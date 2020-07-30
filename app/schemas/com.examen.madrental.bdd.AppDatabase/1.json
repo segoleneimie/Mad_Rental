@@ -1,0 +1,52 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "8252e7efbf851e9dd8ef30249064eff6",
+    "entities": [
+      {
+        "tableName": "vehicules",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`vehiculeId` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `nomVehicule` TEXT, `categorieVehicules` TEXT, `prixVehicule` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "vehiculeId",
+            "columnName": "vehiculeId",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "nomVehicule",
+            "columnName": "nomVehicule",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "categorieVehicules",
+            "columnName": "categorieVehicules",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "prixVehicule",
+            "columnName": "prixVehicule",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "vehiculeId"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      }
+    ],
+    "views": [],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8252e7efbf851e9dd8ef30249064eff6')"
+    ]
+  }
+}

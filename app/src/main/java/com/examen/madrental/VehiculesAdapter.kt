@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.RecyclerView
+import com.examen.madrental.fragment.DetailFragment
 import com.examen.madrental.ws.RetourVehiculeWs
 import kotlinx.android.synthetic.main.item_vehicule.view.*
 

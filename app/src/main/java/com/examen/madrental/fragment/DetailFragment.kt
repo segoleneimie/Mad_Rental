@@ -1,15 +1,17 @@
-package com.examen.madrental
+package com.examen.madrental.fragment
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.examen.madrental.R
 import kotlinx.android.synthetic.main.fragment_detail.*
 
 
 class DetailFragment : Fragment() {
+
+
 
 
     companion object {
@@ -22,12 +24,16 @@ class DetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_detail, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+
+
+
         // récupération de l'argument depuis DetailActivity :
         val arguments = requireArguments()
         val nom = arguments.getString(NOM_VEHICULE)
@@ -40,6 +46,11 @@ class DetailFragment : Fragment() {
         categorie?.let { libelle_vehicule_category.text = "Catégorie CO2 : ${categorie}" }
 
 
-    }
 
-}
+
+            }
+
+
+
+
+    }

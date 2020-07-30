@@ -2,7 +2,13 @@ package com.examen.madrental
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.Button
 import androidx.fragment.app.FragmentTransaction
+import com.examen.madrental.bdd.AppDatabaseHelper
+import com.examen.madrental.bdd.VehiculesDTO
+import com.examen.madrental.fragment.DetailFragment
 
 
 class DetailActivity : AppCompatActivity() {
@@ -15,6 +21,7 @@ class DetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
+
 
         val nomVehicule = intent.getStringExtra(NOM_VEHICULE)
         val prixVehicule = intent.getIntExtra(PRIX_VEHICULE,0)
@@ -32,5 +39,14 @@ class DetailActivity : AppCompatActivity() {
         val transaction: FragmentTransaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.conteneur_fragment,fragment)
         transaction.commit()
+
+    }
+
+    fun clicEnregistrer(view: View){
+        Log.d("clic", "clic bouton")
+        val nomVehicule = intent.getStringExtra(NOM_VEHICULE)
+        val prixVehicule = intent.getIntExtra(PRIX_VEHICULE,0)
+        val categorieVehicule = intent.getStringExtra(CATEGORIE_VEHICULE)
+        AppDatabaseHelper.getDatabase(this).vehiculesDAO().insert(VehiculesDTO(0, nomVehicule,categorieVehicule,prixVehicule))
     }
 }

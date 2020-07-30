@@ -1,11 +1,17 @@
 package com.examen.madrental
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.CompoundButton
+import android.widget.Switch
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.examen.madrental.ws.*
+import com.examen.madrental.bdd.AppDatabaseHelper
+import com.examen.madrental.ws.RetourVehiculeWs
+import com.examen.madrental.ws.RetrofitSingleton
+import com.examen.madrental.ws.WSInterface
+import com.examen.madrental.ws.reseauHelper
 import kotlinx.android.synthetic.main.activity_liste.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -23,14 +29,41 @@ class ListeActivity : AppCompatActivity() {
 
 
 
+
     // layout manager, décrivant comment les items sont disposés :
         val layoutManager = LinearLayoutManager(this)
         liste_vehicules.layoutManager = layoutManager
 
         recupereVehicules()
+
+
+        val switchFavoris : Switch = findViewById(R.id.favorisSwith)
+        switchFavoris.setOnCheckedChangeListener(CompoundButton.OnCheckedChangeListener { buttonView, isChecked ->
+            Log.v(
+                "Switch State=",
+                "" + isChecked
+            )
+
+            if (switchFavoris.isChecked()){
+                val vehiculeAdapter = AppDatabaseHelper.getDatabase(this).vehiculesDAO().getListeVehicules()
+                Log.d("liste favoris", vehiculeAdapter.toString())
+            } else {
+                recupereVehicules()
+            }
+
+        })
+
     }
 
+
+
+
+
+
+
     fun recupereVehicules(){
+
+
         // vérification de l'état de la connexion internet :
         if (!reseauHelper.estConnecte(this))
         {

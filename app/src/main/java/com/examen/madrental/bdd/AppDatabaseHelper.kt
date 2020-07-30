@@ -8,6 +8,7 @@ class AppDatabaseHelper(context: Context) {
     {
         // Helper :
         private lateinit var databaseHelper: AppDatabaseHelper
+
         // Getter instance :
         fun getDatabase(context: Context): AppDatabase
         {
@@ -18,6 +19,7 @@ class AppDatabaseHelper(context: Context) {
             return databaseHelper.database
         }
     }
+
     // Base de données :
     val database: AppDatabase = Room
         .databaseBuilder(context.applicationContext, AppDatabase::class.java, "vehicules.db")
