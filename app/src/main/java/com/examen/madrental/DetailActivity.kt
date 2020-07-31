@@ -40,13 +40,17 @@ class DetailActivity : AppCompatActivity() {
         transaction.replace(R.id.conteneur_fragment,fragment)
         transaction.commit()
 
+
     }
 
+// il n'y a pas de vérification si  véhicule est déjà en base. Cela doit se faire dans une transaction au niveau de la base de données
+// ne fonctionnement pas en mode paysage, devrai surement être mise dans le fragement pour être fonctionnelle partout, mais je ny suis pas arrivé dans le temps que j'avais
     fun clicEnregistrer(view: View){
         Log.d("clic", "clic bouton")
-        val nomVehicule = intent.getStringExtra(NOM_VEHICULE)
+        val nomVehicule = intent.getStringExtra(NOM_VEHICULE).toString()
         val prixVehicule = intent.getIntExtra(PRIX_VEHICULE,0)
-        val categorieVehicule = intent.getStringExtra(CATEGORIE_VEHICULE)
-        AppDatabaseHelper.getDatabase(this).vehiculesDAO().insert(VehiculesDTO(0, nomVehicule,categorieVehicule,prixVehicule))
+        val categorieVehicule = intent.getStringExtra(CATEGORIE_VEHICULE).toString()
+        AppDatabaseHelper.getDatabase(this).vehiculesDAO().insert(VehiculesDTO(0,
+            nomVehicule,categorieVehicule,prixVehicule))
     }
 }

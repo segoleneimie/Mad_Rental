@@ -11,9 +11,6 @@ import kotlinx.android.synthetic.main.fragment_detail.*
 
 class DetailFragment : Fragment() {
 
-
-
-
     companion object {
         const val NOM_VEHICULE = "NOM_VEHICULE"
         const val PRIX_VEHICULE = "PRIX_VEHICULE"
@@ -33,7 +30,6 @@ class DetailFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
 
-
         // récupération de l'argument depuis DetailActivity :
         val arguments = requireArguments()
         val nom = arguments.getString(NOM_VEHICULE)
@@ -44,13 +40,5 @@ class DetailFragment : Fragment() {
         nom?.let { libelle_vehicule.text = nom }
         prix?.let { libelle_vehicule_prix.text ="${prix}.00 €"}
         categorie?.let { libelle_vehicule_category.text = "Catégorie CO2 : ${categorie}" }
-
-
-
-
             }
-
-
-
-
     }
